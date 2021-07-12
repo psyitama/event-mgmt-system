@@ -1,30 +1,61 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 mt-5">
-            <form>
-                <h3>Login</h3>
-                <div class="form-group row mt-2">
-                    <label for="inputEmail3" class="col-sm-3 col-form-label">First Name</label>
+            <form action="/users/<%= current_user.id %>" method="post">
+                <% if flash[:errors] %>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <% flash[:errors].each do |e| %>
+                            <p><strong><%= e %></strong></p> 
+                        <% end %>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <% end %>
+                <% if flash[:success] %>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <strong> <%= flash[:success] %> </strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <% end %>
+                <h3>Edit Profile</h3>
+                <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>"
+                />
+                <input type="hidden" name="_method" value="patch">
+                <div class="form-group row">
+                    <label for="first_name" class="col-sm-3 col-form-label">First Name:</label>
                     <div class="col-sm-9">
-                        <input type="email" class="form-control" id="inputEmail3" />
+                        <input type="text" class="form-control" name="user[first_name]" id="first_name" value="<%= current_user.first_name %>" />
                     </div>
                 </div>
                 <div class="form-group row mt-2">
-                    <label for="inputPassword3" class="col-sm-3 col-form-label">Last Name</label>
+                    <label for="last_name" class="col-sm-3 col-form-label">Last Name:</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword3" />
+                        <input type="text" class="form-control" name="user[last_name]" id="last_name" value="<%= current_user.last_name %>" />
                     </div>
                 </div>
                 <div class="form-group row mt-2">
-                    <label for="inputPassword3" class="col-sm-3 col-form-label">Email</label>
+                    <label for="email" class="col-sm-3 col-form-label">Email:</label>
                     <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword3" />
+                        <input type="email" class="form-control" name="user[email]" id="email" value="<%= current_user.email %>" />
                     </div>
                 </div>
                 <div class="form-group row mt-2">
-                    <label for="inputPassword3" class="col-sm-3 col-form-label">Location</label>
-                    <div class="col-sm-9">
-                        <input type="password" class="form-control" id="inputPassword3" />
+                    <label for="password_confirmation" class="col-sm-3 col-form-label">Location:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="user[location]" id="location" value="<%= current_user.location %>" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <select class="form-control" name="user[state_id]" id="exampleFormControlSelect1">
+                            <% @states.each do |state| %>
+                                <% if current_user.state_id == state.id %>
+                                    <option selected value="<%= state.id %>"><%= state.state %></option>
+                                <% else %>
+                                    <option value="<%= state.id %>"><%= state.state %></option>
+                                <% end %>
+                            <% end %>
+                        </select>
                     </div>
                 </div>
                 <div class="text-end mt-4">

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root 'users#index'
   get 'users/:id/edit' => 'users#edit'
   post 'users' => 'users#create'
+  patch 'users/:id' => 'users#update'
   
   get 'events' => 'events#index'
   get 'events/:id' => 'events#show'

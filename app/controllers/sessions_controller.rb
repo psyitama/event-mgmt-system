@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
 
+  skip_before_action :require_login, except: [:create]
+
   def create
     user = User.find_by_email(user_params[:email]).try(:authenticate, user_params[:password]) 
     if user
