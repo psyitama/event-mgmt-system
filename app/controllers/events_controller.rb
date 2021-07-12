@@ -10,6 +10,7 @@ class EventsController < ApplicationController
   def show
     @selected_event = Event.find(params[:id])
     @users_joined = Join.where(event_id: params[:id])
+    @event_comments = Comment.where(event_id: params[:id])
   end
 
   def create
