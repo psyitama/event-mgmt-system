@@ -1,0 +1,61 @@
+<div class="container">
+    <div class="row">
+        <% if flash[:error] %>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <p><strong><%= flash[:error] %></strong></p> 
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% end %>
+        <% if flash[:success] %>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong> <%= flash[:success] %> </strong>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        <% end %>
+        <div class="col-md-6 mt-5">
+            <form action="/events/<%= @event_to_edit.id %>" method="post">
+                <h3>Update Event</h3>
+                <input
+                type="hidden"
+                name="authenticity_token"
+                value="<%= form_authenticity_token %>"
+                />
+                <input type="hidden" name="_method" value="patch">
+                <input type="hidden" name="event[user_id]" value="<%= current_user.id %>">
+                <div class="form-group row">
+                    <label for="name" class="col-sm-3 col-form-label">Name:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" name="event[name]" id="name" value="<%= @event_to_edit.name %>" />
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="date" class="col-sm-3 col-form-label">Date:</label>
+                    <div class="col-sm-4">
+                        <input type="date" class="form-control" name="event[date]" id="date" value="<%= @event_to_edit.date.strftime("%Y-%m-%d") %>" />
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <label for="password_confirmation" class="col-sm-3 col-form-label">Location:</label>
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" name="event[location]" id="location" value="<%= @event_to_edit.location %>" />
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <select class="form-control" name="event[state_id]" id="exampleFormControlSelect1">
+                            <% @states.each do |state| %>
+                                <% if @event_to_edit.state_id == state.id  %>
+                                    <option selected value="<%= state.id %>"><%= state.state %></option>
+                                <% else %>
+                                    <option selected value="<%= state.id %>"><%= state.state %></option>
+                                <% end %>
+                            <% end %>
+                        </select>
+                    </div>
+                </div>
+                <div class="text-end mt-4">
+                    <input type="submit" class="btn btn-primary" value="Update Event">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+

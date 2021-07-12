@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="event-info">
+            <h3><%= @selected_event.name %></h3>
+            <h4>Host: <%= @selected_event.user.first_name %> <%= @selected_event.user.last_name %></h4>
+            <h4>Date: <%= @selected_event.date.strftime("%B %d, %Y") %></h4>
+            <h4>Location: <%= @selected_event.location %></h4>
+            <h4>People who are joining the event: <%= @users_joined.count %></h4>
+        </div>
+        <div class="col-8">
+            <table class="table mt-5">
+                <thead class="table-dark">
+                    <th scope="col">Name</th>
+                    <th scope="col">Location</th>
+                    <th scope="col">State</th>
+                </thead>
+                <tbody>
+                    <% @users_joined.each do |user_joined| %>
+                        <tr>
+                            <td><%= user_joined.user.first_name %></td>
+                            <td><%= user_joined.user.location %></td>
+                            <td><%= user_joined.user.state.state %></td>
+                        </tr>
+                    <% end %>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-4">
+            <h5 class="mt-5 ms-4 class text-center text-primary">DISCUSSION ABOUT THIS EVENT:</h5>
+            <div class="overflow-scroll ms-5" style="height: 400px;">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus ipsa ad porro eos vel. Est harum expedita, sit ratione vero animi temporibus cupiditate sed, suscipit adipisci, error similique iure non!
+                Neque reprehenderit itaque natus odio quo aperiam at minima asperiores aspernatur dolores architecto error, porro laborum, incidunt similique deleniti pariatur nobis tempore voluptates quas non eligendi! Unde sint cumque perferendis?
+                Non est quidem beatae expedita debitis tenetur unde corrupti at quae nesciunt iure dolore similique suscipit, rem molestiae deserunt distinctio voluptatum explicabo? Ex, at. Iusto hic pariatur magnam. Ab, maxime.
+                Aliquam quibusdam, alias tempora laborum totam, facilis dolor cupiditate rerum expedita delectus iure harum obcaecati aspernatur suscipit iusto nisi iste deserunt quisquam! Quidem sunt vero reprehenderit temporibus. Sequi, odit officia.
+                Adipisci debitis tempora quis sunt odio consequatur, molestiae autem atque necessitatibus quos ratione modi, dicta, corrupti pariatur. Ea possimus soluta magni officiis, voluptates provident voluptas! Placeat fugiat tempora praesentium recusandae?
+                Ipsam deleniti delectus tenetur dicta animi praesentium ipsa. Recusandae atque iste qui dolores corrupti cum nisi corporis vitae sed adipisci, ratione at dignissimos laborum assumenda repudiandae, vero quod enim repellendus?
+                Omnis consequatur distinctio facere, minus quos maxime dolore quia harum earum qui recusandae tempora impedit atque sapiente deleniti doloribus ab odio adipisci delectus hic nesciunt, incidunt fugit! Possimus, dicta repudiandae.
+                Molestias ipsa tenetur unde sequi praesentium, illo suscipit incidunt totam maiores asperiores, placeat rem, similique numquam inventore quaerat recusandae. Reprehenderit, minus esse ea quasi sequi tenetur temporibus voluptate! Explicabo, fuga!
+                Reprehenderit commodi, distinctio velit in similique at sequi, ab omnis eum expedita porro? Possimus soluta voluptate magni qui, officia commodi iure harum. Vitae tempore illum est sunt nulla, fuga doloremque.
+                Alias quibusdam laudantium aperiam deleniti omnis, laborum ducimus asperiores ea ullam repellendus voluptatem modi adipisci animi architecto iste commodi, hic expedita reiciendis. Omnis amet illo ea reprehenderit maiores consequatur mollitia!
+                Dignissimos repellendus reprehenderit cum aut accusamus, dolor saepe modi facilis est sequi, laborum earum nihil, dolore consequatur! Omnis obcaecati possimus hic sed animi, sunt consequuntur repellat tenetur enim iure blanditiis.
+                Reprehenderit dolore tenetur accusamus commodi id sit facere dolor, beatae quibusdam possimus consequuntur obcaecati, maiores voluptas quam repudiandae eum in, vel laborum cumque fugiat? Quis adipisci dolores sunt inventore veritatis?
+                Placeat quasi consequuntur, accusamus doloremque veritatis architecto facere, sapiente maxime, excepturi fugit sequi quas. Numquam, id neque illum possimus quae eius voluptatibus. Voluptas fugit vero tempore soluta, debitis minima eum.
+                Neque atque, facere, animi culpa eveniet illo iure sint numquam expedita quaerat hic voluptates aspernatur. Tempora veritatis pariatur aspernatur debitis earum. Qui tempora possimus itaque voluptas sequi dolorum quis dignissimos.
+                Inventore numquam fugiat quibusdam molestiae, ipsum eaque laboriosam sapiente expedita possimus consequatur placeat nihil non autem repellat assumenda obcaecati quo ad, dolores dolorem, et delectus. Corrupti ad provident dolorum in!
+                Est, eum! Optio doloremque voluptate minima inventore eum eius nihil eligendi harum soluta quo? Ex ad laudantium impedit nobis nemo fuga, dolores architecto qui nam iste molestiae repudiandae suscipit beatae?
+                Aut illum sit voluptas fugit dicta animi vel neque maiores nam, eaque quisquam. Porro earum voluptate officiis aut non distinctio laboriosam corporis unde ab eos dolore aliquid, dolorem pariatur. Quisquam.
+                Distinctio ipsum magnam aliquid voluptas dolorum, saepe aspernatur eligendi. Sed reprehenderit eos, architecto vel nisi iure dolorem natus tempora ipsa, doloribus eaque itaque harum culpa labore deleniti rem veniam ullam.
+                Nulla, eum, eligendi dolor ipsum ipsam repudiandae cupiditate nam blanditiis quo explicabo provident incidunt odit totam beatae recusandae distinctio ut voluptas consequuntur sint! Voluptatem veritatis perferendis vel alias, ducimus iusto.
+                Neque, mollitia reiciendis debitis consequatur sint fugit, nostrum culpa cumque tenetur quo non accusantium quibusdam maxime ratione similique veniam rem id. Aliquam ab sunt a, nemo quibusdam exercitationem nulla porro.</div>
+        
+                <form class="ms-5 mt-3" action="/comments" method="post">
+                    <% if flash[:error] %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <p><strong><%= flash[:error] %></strong></p> 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <% end %>
+                    <% if flash[:success] %>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong> <%= flash[:success] %> </strong>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <% end %>
+                    <h5>Add Comment</h5>
+                    <div class="form-group">
+                        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+                        <input type="hidden" name="comment[user_id]" value="<%= current_user.id %>">
+                        <input type="hidden" name="comment[event_id]" value="<%= @selected_event.id %>">
+                        <label for="comment">Example textarea</label>
+                        <textarea class="form-control" name="comment[comment]" id="comment" rows="3"></textarea>
+                    </div>
+                    <div class="text-end mt-2 mb-5">
+                        <input type="submit" class="btn btn-primary" value="Submit Comments">
+                    </div>
+                </form>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,82 @@
+<% content_for :left_column do %>
+<form action="/users" method="post">
+    <h3>Register</h3>
+    <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+    />
+    <div class="form-group row">
+        <label for="first_name" class="col-sm-3 col-form-label">First Name:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="user[first_name]" id="first_name" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="last_name" class="col-sm-3 col-form-label">Last Name:</label>
+        <div class="col-sm-9">
+            <input type="text" class="form-control" name="user[last_name]" id="last_name" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="email" class="col-sm-3 col-form-label">Email:</label>
+        <div class="col-sm-9">
+            <input type="email" class="form-control" name="user[email]" id="email" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="password" class="col-sm-3 col-form-label">Password:</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" name="user[password]" id="password" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="password_confirmation" class="col-sm-3 col-form-label">Confirm PW:</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" name="user[password_confirmation]" id="password_confirmation" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="password_confirmation" class="col-sm-3 col-form-label">Location:</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" name="user[location]" id="location" />
+        </div>
+        <div class="form-group col-sm-3">
+            <select class="form-control" name="user[state_id]" id="exampleFormControlSelect1">
+                <% @states.each do |state| %>
+                    <option value="<%= state.id %>"><%= state.state %></option>
+                <% end %>
+            </select>
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <input type="submit" class="btn btn-primary" value="Register">
+    </div>
+</form>
+<% end %>
+
+<% content_for :right_column do %>
+<form action="/sessions" method="post">
+    <h3>Login</h3>
+    <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>"
+    />
+    <div class="form-group row">
+        <label for="email" class="col-sm-3 col-form-label">Email:</label>
+        <div class="col-sm-9">
+            <input type="email" class="form-control" name="user[email]" id="email" />
+        </div>
+    </div>
+    <div class="form-group row mt-2">
+        <label for="password" class="col-sm-3 col-form-label">Password:</label>
+        <div class="col-sm-9">
+            <input type="password" class="form-control" name="user[password]" id="password" />
+        </div>
+    </div>
+    <div class="text-center mt-4">
+        <input type="submit" class="btn btn-primary" value="Login">
+    </div>
+</form>
+<% end %>
