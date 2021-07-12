@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   patch 'events/:id' => 'events#update'
   delete 'events/:id' => 'events#destroy'
 
-  post 'joins/:id' => 'events#create'
-  delete 'joins/:id' => 'events#destroy'
+  post 'joins' => 'joins#create'
+  delete 'joins/:id' => 'joins#destroy'
 
   post 'comments' => 'comments#create'
 end

@@ -2,17 +2,17 @@
 
 <div class="container mt-3">
     <div class="row">
-        <% if flash[:delete_error] %>
+        <% if flash[:action_error] %>
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <% flash[:delete_error].each do |e| %>
+                <% flash[:action_error].each do |e| %>
                 <p><strong><%= e %></strong></p> 
                 <% end %>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <% end %>
-        <% if flash[:delete_success] %>
+        <% if flash[:action_success] %>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong> <%= flash[:delete_success] %> </strong>
+                <strong> <%= flash[:action_success] %> </strong>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         <% end %>
@@ -57,8 +57,8 @@
                             <% else %>
                                 <form action="/joins" method="post">
                                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                                    <input type="hidden" name="event_id" value="<%= state_event.id %>">
-                                    <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                                    <input type="hidden" name="join[event_id]" value="<%= state_event.id %>">
+                                    <input type="hidden" name="join[user_id]" value="<%= current_user.id %>">
                                     <input type="hidden" name="_method" value="delete">
                                     <input type="submit" class="border-0 bg-white text-warning fw-bold text-decoration-underline" value="Join">
                                 </form>
@@ -113,8 +113,8 @@
                                 <% else %>
                                     <form action="/joins" method="post">
                                         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-                                        <input type="hidden" name="event_id" value="<%= state_event.id %>">
-                                        <input type="hidden" name="user_id" value="<%= current_user.id %>">
+                                        <input type="hidden" name="join[event_id]" value="<%= state_event.id %>">
+                                        <input type="hidden" name="join[user_id]" value="<%= current_user.id %>">
                                         <input type="submit" class="border-0 bg-white text-warning fw-bold text-decoration-underline" value="Join">
                                     </form>
                                 <% end %>

@@ -43,9 +43,9 @@ class EventsController < ApplicationController
     event_to_delete = Event.find(params[:id])
 
     if event_to_delete.destroy
-      flash[:delete_success] = "Event successfully deleted."
+      flash[:action_success] = "Event successfully deleted."
     else
-      flash[:delete_error] = "Failed deleting event."
+      flash[:action_error] = "Failed deleting event."
     end
     redirect_to "/events"
   end
