@@ -11,9 +11,10 @@ class JoinsController < ApplicationController
   end
 
   def destroy
+
     event_to_cancel = Join.where(user_id: join_params[:user_id]).where(event_id: join_params[:event_id])
 
-    if event_to_cancel.destroy
+    if event_to_cancel.destroy_all
       flash[:action_success] = "Unjoin successfully."
     else
       flash[:action_error] = "Failed to unjoin"

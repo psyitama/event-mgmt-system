@@ -38,7 +38,7 @@
                         <% if current_user.events.exists?(id: state_event.id) %>
                             <a href="events/<%= state_event.id %>/edit">Edit</a> |
                             <div class="d-inline-block">
-                                <form action="/events/<%=current_user.id%>" method="post">
+                                <form action="/events/<%=state_event.id%>" method="post">
                                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                     <input type="hidden" name="_method" value="delete">
                                     <input type="submit" class="border-0 bg-white text-danger text-decoration-underline" value="Delete">
@@ -51,6 +51,8 @@
                                     <form action="/joins/<%=current_user.id%>" method="post">
                                         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                         <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="join[event_id]" value="<%= state_event.id %>">
+                                        <input type="hidden" name="join[user_id]" value="<%= current_user.id %>">
                                         <input type="submit" class="border-0 bg-white text-warning fw-bold" value="Cancel">
                                     </form>
                                 </div>
@@ -59,7 +61,6 @@
                                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                     <input type="hidden" name="join[event_id]" value="<%= state_event.id %>">
                                     <input type="hidden" name="join[user_id]" value="<%= current_user.id %>">
-                                    <input type="hidden" name="_method" value="delete">
                                     <input type="submit" class="border-0 bg-white text-warning fw-bold text-decoration-underline" value="Join">
                                 </form>
                             <% end %>
@@ -94,7 +95,7 @@
                         <% if current_user.events.exists?(id: state_event.id) %>
                             <a href="events/<%= state_event.id %>/edit">Edit</a> |
                             <div class="d-inline-block">
-                                <form action="/events/<%=current_user.id%>" method="post">
+                                <form action="/events/<%=state_event.id%>" method="post">
                                     <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                     <input type="hidden" name="_method" value="delete">
                                     <input type="submit" class="border-0 bg-white text-danger text-decoration-underline" value="Delete">
@@ -107,6 +108,8 @@
                                     <form action="/joins/<%=current_user.id%>" method="post">
                                         <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
                                         <input type="hidden" name="_method" value="delete">
+                                        <input type="hidden" name="join[event_id]" value="<%= state_event.id %>">
+                                        <input type="hidden" name="join[user_id]" value="<%= current_user.id %>">
                                         <input type="submit" class="border-0 bg-white text-warning fw-bold" value="Cancel">
                                     </form>
                                 </div>
