@@ -16,7 +16,7 @@ class JoinsController < ApplicationController
     if event_to_cancel.destroy
       flash[:action_success] = "Unjoin successfully."
     else
-      flash[:action_error] = "Failed to unjoin".
+      flash[:action_error] = "Failed to unjoin"
     end
     redirect_to "/events"
   end
